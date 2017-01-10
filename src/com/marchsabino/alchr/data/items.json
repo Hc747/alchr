@@ -1,0 +1,22 @@
+{
+  "items": {
+    "Green d\'hide body": {
+      "id": 1135,
+      "highalch": 4680,
+      "lowalch": 3120,
+      "buylimit": 125
+    },
+    "Blue d\'hide body": {
+      "id": 2499,
+      "highalch": 5616,
+      "lowalch": 3744,
+      "buylimit": 125
+    },
+    "Abyssal whip": {
+      "id": 4151,
+      "highalch": 72000,
+      "lowalch": 48000,
+      "buylimit": 10
+    }
+  }
+}

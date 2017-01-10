@@ -28,6 +28,12 @@ public class Item {
     private int id;
     /** The item's current price. */
     private int currentPrice;
+    /** The most amount of items of this you can buy at one time in GE. */
+    private int buyLimit;
+    /** The amount of GP you get when high alching this item. */
+    private int highAlch;
+    /** The amount of GP you get when low alching this item. */
+    private int lowAlch;
     /** The item's name. */
     private String name;
     /** The item's image link. */
@@ -139,5 +145,25 @@ public class Item {
     public int getCurrentPrice() {
         return currentPrice;
     }
+
+    /**
+     * Gets the max quantity you can buy at one time in the GE.
+     * @return the maximum quantity you can buy at one time of this item.
+     */
+    public int getBuyLimit() { return buyLimit; }
+
+    /**
+     * Gets the amount of GP you would recieve by high alching this item.
+     * This is not the "net profit/loss" this is simply how much you will get.
+     * @return the amount of GP you recieve by high alching.
+     */
+    public int getHighAlch() { return highAlch; }
+
+    /**
+     * Gets the amount of GP you would recieve by low alching this item.
+     * This is not the "net profit/loss" this is simply how much you will get.
+     * @return the amount of GP you recieve by low alching.
+     */
+    public int getLowAlch() { return lowAlch; }
 
 }

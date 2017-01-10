@@ -1,6 +1,5 @@
 *.class
 .idea/*
-.out/*
 alchr.iml
 
 # Mobile Tools for Java (J2ME)

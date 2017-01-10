@@ -1,18 +1,24 @@
 {
   "items": {
-    "Green d\'hide body": {
+    "nature rune": {
+      "id": 561,
+      "highalch": 108,
+      "lowalch": 72,
+      "buylimit": 12000
+    },
+    "green d'hide body": {
       "id": 1135,
       "highalch": 4680,
       "lowalch": 3120,
       "buylimit": 125
     },
-    "Blue d\'hide body": {
+    "blue d'hide body": {
       "id": 2499,
       "highalch": 5616,
       "lowalch": 3744,
       "buylimit": 125
     },
-    "Abyssal whip": {
+    "abyssal whip": {
       "id": 4151,
       "highalch": 72000,
       "lowalch": 48000,

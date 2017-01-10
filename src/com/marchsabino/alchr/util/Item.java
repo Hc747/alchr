@@ -4,6 +4,7 @@ import com.marchsabino.alchr.net.Connection;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -88,8 +89,37 @@ public class Item {
             this.image = nodeName.getString("icon");    // the image icon of the item
             nodeName = nodeName.getJSONObject("current");   // now look at the current object
             this.currentPrice = formatPrice(nodeName.get("price").toString());   // look at the current price
+            parseAlchData(name);    // Now fill data with data from items.json
         } else {
-            System.out.println("ERROR: Couldn't reach OSRS API." + Connection.BASE_URL + id);
+            System.err.println("ERROR: Couldn't reach OSRS API. ");
+        }
+    }
+
+    /**
+     * Goes through items in the JSON file with the specified item name and fills in
+     * the alchemy data.
+     *
+     * @param itemName the name of the item to get
+     */
+    private void parseAlchData(String itemName) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/com/marchsabino/alchr/data/items.json"));
+
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+
+            JSONObject nodeRoot = new JSONObject(stringBuilder.toString());
+            JSONObject nodeName = nodeRoot.getJSONObject("items");
+            nodeName = nodeName.getJSONObject(itemName.toLowerCase());  // capitalization matters, so make it lowercase.
+            this.highAlch = nodeName.getInt("highalch");
+            this.lowAlch = nodeName.getInt("lowalch");
+            this.buyLimit = nodeName.getInt("buylimit");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

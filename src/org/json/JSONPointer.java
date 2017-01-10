@@ -1,4 +1,4 @@
-package json;
+package org.json;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

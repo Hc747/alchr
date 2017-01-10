@@ -1,7 +1,7 @@
 package com.marchsabino.alchr.util;
 
 import com.marchsabino.alchr.net.Connection;
-import json.JSONObject;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;

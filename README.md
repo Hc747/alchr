@@ -10,3 +10,6 @@ Alchr depends heavily on JSON. This allows users to easily add an "item" object;
 
 ### What is it capable of?
 Finding an item you would like to alch can be as simple as clicking a button (this is just a library but it gives you the methods to be able to easily build a GUI to do so). Alchr will have the ability to sort though all kinds of data and determine what are the best items to alch. Less money spent is the more desirable item. Indeed, there are already websites out there that can do this; however there are few (if any) Java libraries that can help developers create their own, unique, and (potentially) better version of these websites.
+
+# Using Alchr
+Simply download the library as a .ZIP or Clone it from this repository and include the files in your project!

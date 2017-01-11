@@ -1,7 +1,6 @@
 package com.marchsabino.alchr.util;
 
 import com.marchsabino.alchr.net.Connection;
-import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -14,7 +13,7 @@ import java.net.URLConnection;
  *
  * @author Marcello Sabino
  */
-public class Item {
+public class Item implements ItemUtil, Comparable<Item> {
 
     /** The nature rune's item id. */
     public final static int NATURE_RUNE_ID = 561;
@@ -157,7 +156,6 @@ public class Item {
      * @param fileName the link to the file.
      * @return the contents of the file in string form.
      */
-    @Nullable
     private static String readFile(String fileName) {
         try {
             BufferedReader reader = null;
@@ -230,4 +228,40 @@ public class Item {
      */
     public int getLowAlch() { return lowAlch; }
 
+    /**
+     * Is this item a better item to alch than another item.
+     * Determines if this item has a better net profit than another item.
+     *
+     * IF THEY ARE EQUAL IT WILL DEFAULT TO TRUE.
+     *
+     * @param item the item to compare with.
+     * @return true if this item is better than another item, false if the other item is better.
+     */
+    public boolean betterThan(Item item) {
+        return (compareTo(item) >= 0);
+    }
+
+    @Override
+    public int netProfit(boolean highAlch) {
+        return (highAlch)
+                ? getHighAlch() - getCurrentPrice() - NATURE_RUNE.getCurrentPrice()
+                : getLowAlch() - getCurrentPrice() - NATURE_RUNE.getCurrentPrice();
+    }
+
+    /**
+     * Compares this item's netProfit to another item's(via HIGH ALCH).
+     * Comparing two items will return the item that is more profitable to alch.
+     *
+     * @param item the item to compare to.
+     * @return a negative integer, zero, or a positive integer as this item's net profit is less than, equal to, or greater than the specified item.
+     */
+    @Override
+    public int compareTo(Item item) {
+        if (netProfit(true) < item.netProfit(true))
+            return -1;
+        else if (netProfit(true) == item.netProfit(true))
+            return 0;
+        else
+            return 1;
+    }
 }

@@ -1,6 +1,7 @@
 package com.marchsabino.alchr.util;
 
 import com.marchsabino.alchr.net.Connection;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -106,15 +107,22 @@ public class Item implements ItemUtil, Comparable<Item> {
      * Goes through items in the JSON file with the specified item name and fills in
      * the alchemy data.
      *
-     * @param itemName the name of the item to get
+     * @param name the name of the item to get
      */
-    private void parseAlchData(String itemName) {
+    private void parseAlchData(String name) {
         JSONObject nodeRoot = new JSONObject(readFile("src/com/marchsabino/alchr/data/items.json"));
-        JSONObject nodeName = nodeRoot.getJSONObject("items");
-        nodeName = nodeName.getJSONObject(itemName.toLowerCase());  // capitalization matters, so make it lowercase.
-        this.highAlch = nodeName.getInt("highalch");
-        this.lowAlch = nodeName.getInt("lowalch");
-        this.buyLimit = nodeName.getInt("buylimit");
+        JSONArray items = nodeRoot.getJSONArray("items");
+
+        JSONObject currentItem;
+        for (int i = 0; i < items.length(); i++) {
+            currentItem = items.getJSONObject(i);
+            if (currentItem.names().get(0).toString().matches("^"+formatName(name)+"$")) {
+                this.highAlch = currentItem.getJSONObject(name).getInt("highalch");
+                this.lowAlch = currentItem.getJSONObject(name).getInt("lowalch");
+                this.buyLimit = currentItem.getJSONObject(name).getInt("buylimit");
+                break;
+            }
+        }
     }
 
     /**
@@ -145,10 +153,27 @@ public class Item implements ItemUtil, Comparable<Item> {
      */
     private static int getIdFromName(String name) {
         JSONObject nodeRoot = new JSONObject(readFile("src/com/marchsabino/alchr/data/items.json"));
-        JSONObject nodeName = nodeRoot.getJSONObject("items");
-        nodeName = nodeName.getJSONObject(name.toLowerCase());  // capitalization matters, so make it lowercase.
+        JSONArray items = nodeRoot.getJSONArray("items");
 
-        return (nodeName.getInt("id"));
+        JSONObject currentItem;
+        for (int i = 0; i < items.length(); i++) {
+            currentItem = items.getJSONObject(i);
+            if (currentItem.names().get(0).toString().matches("^"+formatName(name)+"$")) {
+                return currentItem.getJSONObject(formatName(name)).getInt("id");
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * Since case matters, be sure to format it before searching in items.json
+     * @param name the name before formatting
+     * @return the formatted name, for example "abyssal whip" would format to "Abyssal whip"
+     */
+    private static String formatName(String name) {
+        name = name.toLowerCase();
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
     /**

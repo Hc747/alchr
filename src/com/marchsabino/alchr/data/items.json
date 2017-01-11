@@ -6,11 +6,35 @@
       "lowalch": 72,
       "buylimit": 12000
     },
+    "green d'hide vamb": {
+      "id": 1065,
+      "highalch": 1500,
+      "lowalch": 1000,
+      "buylimit": 0
+    },
     "green d'hide body": {
       "id": 1135,
       "highalch": 4680,
       "lowalch": 3120,
       "buylimit": 125
+    },
+    "blue d'hide vamb": {
+      "id": 2487,
+      "highalch": 1800,
+      "lowalch": 1200,
+      "buylimit": 0
+    },
+    "red d'hide vamb": {
+      "id": 2489,
+      "highalch": 2160,
+      "lowalch": 1440,
+      "buylimit": 0
+    },
+    "black d'hide vamb": {
+      "id": 2491,
+      "highalch": 2592,
+      "lowalch": 1728,
+      "buylimit": 0
     },
     "blue d'hide body": {
       "id": 2499,
@@ -18,11 +42,113 @@
       "lowalch": 3744,
       "buylimit": 125
     },
+    "red d'hide body": {
+      "id": 2501,
+      "highalch": 6738,
+      "lowalch": 4492,
+      "buylimit": 0
+    },
+    "black d'hide body": {
+      "id": 2503,
+      "highalch": 8088,
+      "lowalch": 5392,
+      "buylimit": 70
+    },
+    "mystic lava staff": {
+      "id": 3054,
+      "highalch": 27000,
+      "lowalch": 18000,
+      "buylimit": 0
+    },
+    "gilded platebody": {
+      "id": 3481,
+      "highalch": 39000,
+      "lowalch": 26000,
+      "buylimit": 0
+    },
+    "gilded platelegs": {
+      "id": 3483,
+      "highalch": 38400,
+      "lowalch": 25600,
+      "buylimit": 0
+    },
+    "gilded plateskirt": {
+      "id": 3485,
+      "highalch": 38400,
+      "lowalch": 25600,
+      "buylimit": 0
+    },
+    "gilded full helm": {
+      "id": 3486,
+      "highalch": 21120,
+      "lowalch": 14080,
+      "buylimit": 0
+    },
+    "gilded kiteshield": {
+      "id": 3488,
+      "highalch": 32640,
+      "lowalch": 21760,
+      "buylimit": 0
+    },
     "abyssal whip": {
       "id": 4151,
       "highalch": 72000,
       "lowalch": 48000,
       "buylimit": 10
+    },
+    "black shield (h1)": {
+      "id": 7332,
+      "highalch": 979,
+      "lowalch": 652,
+      "buylimit": 0
+    },
+    "black shield (h2)": {
+      "id": 7338,
+      "highalch": 979,
+      "lowalch": 653,
+      "buylimit": 0
+    },
+    "black shield (h3)": {
+      "id": 7344,
+      "highalch": 979,
+      "lowalch": 652,
+      "buylimit": 0
+    },
+    "black shield (h4)": {
+      "id": 7350,
+      "highalch": 979,
+      "lowalch": 652,
+      "buylimit": 0
+    },
+    "black shield (h5)": {
+      "id": 7356,
+      "highalch": 979,
+      "lowalch": 652,
+      "buylimit": 0
+    },
+    "gilded boots": {
+      "id": 12391,
+      "highalch": 7500,
+      "lowalch": 5000,
+      "buylimit": 0
+    },
+    "gilded med helm": {
+      "id": 20146,
+      "highalch": 11520,
+      "lowalch": 7680,
+      "buylimit": 0
+    },
+    "gilded chainbody": {
+      "id": 20149,
+      "highalch": 30000,
+      "lowalch": 20000,
+      "buylimit": 0
+    },
+    "gilded sq shield": {
+      "id": 20152,
+      "highalch": 23040,
+      "lowalch": 15360,
+      "buylimit": 0
     }
   }
 }

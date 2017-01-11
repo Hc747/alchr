@@ -1,12 +1,10 @@
 package com.marchsabino.alchr.util;
 
 import com.marchsabino.alchr.net.Connection;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -57,6 +55,16 @@ public class Item {
     }
 
     /**
+     * Creates a new item with the specified item name.
+     * for example if you wanted to create an "Abyssal Whip" this itemName would be "abyssal whip"
+     *
+     * @param name the desired item's name.
+     */
+    public Item(String name) {
+        this(getIdFromName(name));
+    }
+
+    /**
      * Fills the item with the correct GE data.
      * Data being filled is the items name, current price, and it's image.
      * @throws IOException
@@ -102,25 +110,12 @@ public class Item {
      * @param itemName the name of the item to get
      */
     private void parseAlchData(String itemName) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/com/marchsabino/alchr/data/items.json"));
-
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-
-            JSONObject nodeRoot = new JSONObject(stringBuilder.toString());
-            JSONObject nodeName = nodeRoot.getJSONObject("items");
-            nodeName = nodeName.getJSONObject(itemName.toLowerCase());  // capitalization matters, so make it lowercase.
-            this.highAlch = nodeName.getInt("highalch");
-            this.lowAlch = nodeName.getInt("lowalch");
-            this.buyLimit = nodeName.getInt("buylimit");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JSONObject nodeRoot = new JSONObject(readFile("src/com/marchsabino/alchr/data/items.json"));
+        JSONObject nodeName = nodeRoot.getJSONObject("items");
+        nodeName = nodeName.getJSONObject(itemName.toLowerCase());  // capitalization matters, so make it lowercase.
+        this.highAlch = nodeName.getInt("highalch");
+        this.lowAlch = nodeName.getInt("lowalch");
+        this.buyLimit = nodeName.getInt("buylimit");
     }
 
     /**
@@ -142,6 +137,45 @@ public class Item {
         } else {
             return new Integer(price.replace(",",""));
         }
+    }
+
+    /**
+     * Gets the item's id from its name.
+     * @param name the name of the item to get its id.
+     * @return the id of the item.
+     */
+    private static int getIdFromName(String name) {
+        JSONObject nodeRoot = new JSONObject(readFile("src/com/marchsabino/alchr/data/items.json"));
+        JSONObject nodeName = nodeRoot.getJSONObject("items");
+        nodeName = nodeName.getJSONObject(name.toLowerCase());  // capitalization matters, so make it lowercase.
+
+        return (nodeName.getInt("id"));
+    }
+
+    /**
+     * Reads an entire file and returns the contents of the file in String form.
+     * @param fileName the link to the file.
+     * @return the contents of the file in string form.
+     */
+    @Nullable
+    private static String readFile(String fileName) {
+        try {
+            BufferedReader reader = null;
+            reader = new BufferedReader(new FileReader(fileName));
+
+            String line;
+            StringBuilder stringBuilder = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**

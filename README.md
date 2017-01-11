@@ -3,7 +3,7 @@
 # Alchr
 Alchr is an open source library that allows developers to easily get data from the Oldschool Runescape Grand Exchange and perform functions to determine what is the best item to alch. The development has a focus on clean, well-documented code. It also will have an API for developers to start using it with ease.
 
-[![AUR](https://img.shields.io/github/contributors/detailed/alchr.svg)]() [![AUR](https://img.shields.io/github/license/Detailed/alchr.svg)]()
+[![AUR](https://img.shields.io/github/contributors/detailed/alchr.svg)](https://github.com/Detailed/alchr/graphs/contributors) [![AUR](https://img.shields.io/github/license/Detailed/alchr.svg)](https://github.com/Detailed/alchr/blob/master/LICENSE.md)
 
 ### How does Alchr accomplish this?
 Alchr depends heavily on JSON. This allows users to easily add an "item" object; it's lightweight, and easily parsed.

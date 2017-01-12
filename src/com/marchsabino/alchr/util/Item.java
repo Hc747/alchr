@@ -90,7 +90,7 @@ public class Item implements ItemUtil, Comparable<Item> {
      * @param json the JSON object in string form.
      */
     private void parseJSON(String json) {
-        if (!json.equalsIgnoreCase("")) {
+        if (!json.isEmpty()) {
             JSONObject nodeRoot = new JSONObject(json);
             JSONObject nodeName = nodeRoot.getJSONObject("item");
             this.name = nodeName.getString("name");     // the name of the item

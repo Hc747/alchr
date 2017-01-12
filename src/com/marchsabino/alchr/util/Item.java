@@ -71,7 +71,7 @@ public class Item implements ItemUtil, Comparable<Item> {
      */
     private void fillData() throws IOException {
         URLConnection connection = this.connection.getURL().openConnection();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), Connection.DEFAULT_CHARSET));
 
         String inputLine;
         StringBuilder stringBuilder = new StringBuilder();

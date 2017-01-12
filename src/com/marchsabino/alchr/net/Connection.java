@@ -11,6 +11,9 @@ import java.net.URLConnection;
  */
 public class Connection extends URLConnection {
 
+    /** The charset which the expected response is encoded with */
+    public static final String DEFAULT_CHARSET = "UTF-8";
+
     /** The base URL of Old School Runescape's Grand Exchange. */
     public static final String BASE_URL = "http://services.runescape.com/m=itemdb_oldschool/api/catalogue/detail.json?item=";
 

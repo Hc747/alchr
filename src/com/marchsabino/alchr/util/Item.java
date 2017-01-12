@@ -182,22 +182,17 @@ public class Item implements ItemUtil, Comparable<Item> {
      * @return the contents of the file in string form.
      */
     private static String readFile(String fileName) {
-        try {
-            BufferedReader reader = null;
-            reader = new BufferedReader(new FileReader(fileName));
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
+            StringBuilder builder = new StringBuilder();
+            String input;
+            while ((input = reader.readLine()) != null) {
+                builder.append(input);
             }
-
-            return stringBuilder.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
+            return builder.toString();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
-
         return null;
     }
 

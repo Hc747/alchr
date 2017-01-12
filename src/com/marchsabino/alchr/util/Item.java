@@ -4,9 +4,11 @@ import com.marchsabino.alchr.net.Connection;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * The Item class.
@@ -70,18 +72,16 @@ public class Item implements ItemUtil, Comparable<Item> {
      * @throws IOException
      */
     private void fillData() throws IOException {
-        URLConnection connection = this.connection.getURL().openConnection();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), Connection.DEFAULT_CHARSET));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getURL().openStream(), Connection.DEFAULT_CHARSET))) {
 
-        String inputLine;
-        StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder builder = new StringBuilder();
+            String input;
+            while ((input = reader.readLine()) != null) {
+                builder.append(input);
+            }
 
-        while ((inputLine = reader.readLine()) != null) {
-            stringBuilder.append(inputLine);
+            parseJSON(builder.toString());// get the data we want.
         }
-
-        reader.close();
-        parseJSON(stringBuilder.toString());    // get the data we want.
     }
 
     /**
